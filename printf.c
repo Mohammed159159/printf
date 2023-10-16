@@ -48,7 +48,7 @@ int _printf(const char *format, ...)
 	char *str;
 	va_list arg_list;
 
-	if (format == NULL || (format[0] == '%' && format[1] == '%'))
+	if (format == NULL)
 		return (-1);
 
 	va_start(arg_list, format);
@@ -67,22 +67,24 @@ int _printf(const char *format, ...)
 			if (*format == '\0')
 				break;
 
-			if (*format == '%')
+			else if (*format == '%')
 			{
 				write(1, format, 1);
 				len++;
 			}
-			if (*format == 'c')
+			else if (*format == 'c')
 			{
 				c = va_arg(arg_list, int);
 				len += print_char(c);
 			}
 
-			if (*format == 's')
+			else if (*format == 's')
 			{
 				str = va_arg(arg_list, char*);
 				len += print_string(str);
 			}
+			else
+				return (-1);
 		}
 
 		format++;
