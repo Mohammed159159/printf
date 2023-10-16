@@ -72,17 +72,19 @@ int _printf(const char *format, ...)
 				write(1, format, 1);
 				len++;
 			}
-			if (*format == 'c')
+			else if (*format == 'c')
 			{
 				c = va_arg(arg_list, int);
 				len += print_char(c);
 			}
 
-			if (*format == 's')
+			else if (*format == 's')
 			{
 				str = va_arg(arg_list, char*);
 				len += print_string(str);
 			}
+			else
+				return (-1);
 		}
 
 		format++;
