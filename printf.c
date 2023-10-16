@@ -25,6 +25,26 @@ int print_string(char *str)
 }
 
 /**
+ * print_char - a function for printing a char
+ * @s: char to be printed
+ * Return: 1 or 6 if char is null
+ */
+int print_char(char ch)
+{
+	char *null_string = "(null)";
+
+	if (ch == NULL)
+	{
+		write(1, null_string, 6);
+		return (6);
+	}
+
+	write(1, &ch, 1);
+
+	return (1);
+}
+
+/**
  * _printf - an augmentation for printf
  * @format: formatted string
  * Return: no. chars of format
@@ -64,8 +84,7 @@ int _printf(const char *format, ...)
 			if (*format == 'c')
 			{
 				c = va_arg(arg_list, int);
-				write(1, &c, 1);
-				len++;
+				len += print_char(c);
 			}
 
 			if (*format == 's')
