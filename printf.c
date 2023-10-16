@@ -49,9 +49,7 @@ int _printf(const char *format, ...)
 	va_list arg_list;
 
 	if (format == NULL ||
-		(format[0] == '%' &&
-		(format[1] != '%' || format[1] != 'c'
-		|| format[1] != 's')))
+		(format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
 	va_start(arg_list, format);
