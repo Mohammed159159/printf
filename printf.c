@@ -31,16 +31,8 @@ int print_string(char *str)
  */
 int print_char(char ch)
 {
-	char *null_string = "(null)";
-
-	if (ch == NULL)
-	{
-		write(1, null_string, 6);
-		return (6);
-	}
 
 	write(1, &ch, 1);
-
 	return (1);
 }
 
