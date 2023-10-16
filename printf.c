@@ -8,6 +8,13 @@
 int print_string(char *str)
 {
 	int temp_len = 0;
+	char *null_string = "(null)";
+
+	if (str == NULL)
+	{
+		write(1, null_string, 6);
+		return (6);
+	}
 
 	while (str[temp_len] != '\0')
 		temp_len++;
