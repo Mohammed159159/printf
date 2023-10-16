@@ -2,7 +2,7 @@
 
 /**
  * print_string - a function for printing a string
- * @s: string to be printed
+ * @str: string to be printed
  * Return: length of string printed
  */
 int print_string(char *str)
@@ -26,7 +26,7 @@ int print_string(char *str)
 
 /**
  * print_char - a function for printing a char
- * @s: char to be printed
+ * @ch: char to be printed
  * Return: 1 or 6 if char is null
  */
 int print_char(char ch)
