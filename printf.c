@@ -67,24 +67,22 @@ int _printf(const char *format, ...)
 			if (*format == '\0')
 				return (-1);
 
-			else if (*format == '%')
+			if (*format == '%')
 			{
 				write(1, format, 1);
 				len++;
 			}
-			else if (*format == 'c')
+			if (*format == 'c')
 			{
 				c = va_arg(arg_list, int);
 				len += print_char(c);
 			}
 
-			else if (*format == 's')
+			if (*format == 's')
 			{
 				str = va_arg(arg_list, char*);
 				len += print_string(str);
 			}
-			else
-				return (-1);
 		}
 
 		format++;
