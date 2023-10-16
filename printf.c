@@ -1,18 +1,35 @@
 #include "main.h"
 
 /**
+ * print_string - a function for printing a string
+ * @s: string to be printed
+ * Return: length of string printed
+ */
+int print_string(char *str)
+{
+	int temp_len = 0;
+
+	while (str[temp_len] != '\0')
+		temp_len++;
+
+	write(1, str, temp_len);
+
+	return (temp_len);
+}
+
+/**
  * _printf - an augmentation for printf
  * @format: formatted string
  * Return: no. chars of format
  */
 int _printf(const char *format, ...)
 {
-	int len = 0, temp_len = 0;
+	int len = 0;
 	char c;
 	char *str;
 	va_list arg_list;
 
-	if (format == NULL)
+	if (format == NULL || (format[0] == '%' && format[1] == '%'))
 		return (-1);
 
 	va_start(arg_list, format);
@@ -46,13 +63,7 @@ int _printf(const char *format, ...)
 			if (*format == 's')
 			{
 				str = va_arg(arg_list, char*);
-
-				while (str[temp_len] != '\0')
-					temp_len++;
-
-				write(1, str, temp_len);
-
-				len += temp_len;
+				len += print_string(str);
 			}
 		}
 
@@ -63,4 +74,3 @@ int _printf(const char *format, ...)
 
 	return (len);
 }
-
