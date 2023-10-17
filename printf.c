@@ -37,6 +37,40 @@ int print_char(char ch)
 }
 
 /**
+ * print_dec - prints a decimal
+ * @n: number to be printed
+ * Return: no. chars printed
+ */
+int print_dec(int n)
+{
+	char ch;
+	int i = 0;
+
+	if (n % 10 < 0)
+	{
+		n = -n;
+		ch = '-';
+		write(1, &ch, 1);
+		i++;
+	}
+
+	if (n / 10 == 0)
+	{
+		ch = n + '0';
+		write(1, &ch, 1);
+		i++;
+		return (i);
+	}
+	else
+	{
+		i += print_dec(n / 10);
+		ch = n % 10 + '0';
+		write(1, &ch, 1);
+		return (++i);
+	}
+}
+
+/**
  * _printf - an augmentation for printf
  * @format: formatted string
  * Return: no. chars of format
@@ -46,6 +80,7 @@ int _printf(const char *format, ...)
 	int len = 0;
 	char c;
 	char *str;
+	int n;
 	va_list arg_list;
 
 	if (format == NULL)
@@ -82,6 +117,11 @@ int _printf(const char *format, ...)
 			{
 				str = va_arg(arg_list, char*);
 				len += print_string(str);
+			}
+			else if (*format == 'd' || *format == 'i')
+			{
+				n = va_arg(arg_list, int);
+				len += print_dec(n);
 			}
 			else
 				return (-1);
