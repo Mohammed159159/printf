@@ -22,7 +22,8 @@ int _printf(const char *format, ...)
 	{
 		if (*format != '%')
 		{
-			write(1, format, 1); len++;
+			write(1, format, 1);
+			len++;
 		}
 		else
 		{
