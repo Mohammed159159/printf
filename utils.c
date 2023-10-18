@@ -16,6 +16,9 @@ int print_string(char *str)
 		return (6);
 	}
 
+	if (str[0] == '\0')
+		return (0);
+
 	while (str[temp_len] != '\0')
 		temp_len++;
 
@@ -31,6 +34,8 @@ int print_string(char *str)
  */
 int print_char(char ch)
 {
+	if (ch == '\0')
+		return (0);
 
 	write(1, &ch, 1);
 	return (1);
