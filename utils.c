@@ -31,6 +31,9 @@ int print_string(char *str)
  */
 int print_char(char ch)
 {
+	if (ch == '\0')
+		return (0);
+
 	write(1, &ch, 1);
 	return (1);
 }
