@@ -94,8 +94,3 @@ int _printf(const char *format, ...)
 
 	return (len);
 }
-
-void main(void)
-{
-	_printf("Hi");
-}
