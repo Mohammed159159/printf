@@ -13,6 +13,7 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 		return (-1);
+
 	if (*format == '\0')
 		return (0);
 
@@ -22,8 +23,7 @@ int _printf(const char *format, ...)
 	{
 		if (*format != '%')
 		{
-			write(1, format, 1);
-			len++;
+			write(1, format, 1); len++;
 		}
 		else
 		{
@@ -54,6 +54,11 @@ int _printf(const char *format, ...)
 			{
 				n = va_arg(arg_list, int);
 				len += print_bin(n);
+			}
+			else if (*format == 'R')
+			{
+				str = va_arg(arg_list, char*)
+				len += rot13(str);
 			}
 			else
 				return (-1);

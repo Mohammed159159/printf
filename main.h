@@ -5,9 +5,14 @@
 #include <unistd.h>
 #include <stdarg.h>
 
+typedef struct format {
+	char spec;
+	int (*handler)();
+} conversion;
+
 int _printf(const char *format, ...);
-int print_string(char *str);
-int print_char(char ch);
+int print_string(va_list args);
+int print_char(va_list args);
 int print_dec(int n);
 int print_bin(unsigned int n);
 

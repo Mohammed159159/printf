@@ -2,11 +2,13 @@
 
 /**
  * print_string - a function for printing a string
- * @str: string to be printed
+ * @args: args of printf
  * Return: length of string printed
  */
-int print_string(char *str)
+int print_string(va_list args)
 {
+	char *str = va_arg(args, char*);
+
 	int temp_len = 0;
 	char *null_string = "(null)";
 
@@ -26,11 +28,12 @@ int print_string(char *str)
 
 /**
  * print_char - a function for printing a char
- * @ch: char to be printed
+ * @args: args of printf
  * Return: 1 or 6 if char is null
  */
-int print_char(char ch)
+int print_char(va_list args)
 {
+	char ch = va_arg(args, int);
 	write(1, &ch, 1);
 	return (1);
 }
@@ -92,3 +95,31 @@ int print_bin(unsigned int n)
 	write(1, &ch, 1);
 	return (++len);
 }
+
+
+/**
+ * rot13 - implement the rot13 algorithm on given string
+ * @s: string to be manipulated
+ * Return: no chars printed
+ */
+int rot13(char* s) 
+{
+	char* p;
+	int i = 0;
+
+	for (p = s; *p; p++) 
+	{
+		if (*p >= 'a' && *p <= 'z')
+		{
+			*p = (*p - 'a' + 13) % 26 + 'a';
+			i++;
+		} else if (*p >= 'A' && *p <= 'Z')
+		{
+			*p = (*p - 'A' + 13) % 26 + 'A';
+			i++;
+		}
+	}
+
+	return (i);
+}
+
