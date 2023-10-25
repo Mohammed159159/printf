@@ -67,8 +67,3 @@ int _printf(const char *format, ...)
 	va_end(arg_list);
 	return (len);
 }
-
-void main(void)
-{
-	_printf("%R", "Hello");
-}
