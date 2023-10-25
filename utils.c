@@ -129,3 +129,31 @@ int printf_rot13(va_list args)
 	}
 	return (counter);
 }
+/**
+ * printf_string - print a string.
+ * @val: argumen t.
+ * Return: the length of the string.
+ */
+
+int printf_string(va_list val)
+{
+	char *s;
+	int i, len;
+
+	s = va_arg(val, char *);
+	if (s == NULL)
+	{
+		s = "(null)";
+		len = _strlen(s);
+		for (i = 0; i < len; i++)
+			write(1, &s[i], 1);
+		return (len);
+	}
+	else
+	{
+		len = _strlen(s);
+		for (i = 0; i < len; i++)
+			write(1, &s[i], 1);
+		return (len);
+	}
+}

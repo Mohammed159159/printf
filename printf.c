@@ -59,6 +59,10 @@ int _printf(const char *format, ...)
 			{
 				len += printf_rot13(arg_list);
 			}
+			else if (*format == 'S')
+			{
+				len += printf_string(art_list);
+			}
 			else
 				return (-1);
 		}
