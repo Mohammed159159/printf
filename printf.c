@@ -63,6 +63,10 @@ int _printf(const char *format, ...)
 			{
 				len += printf_string(arg_list);
 			}
+			else if (*format == 'p')
+			{
+				len += printf_pointer(arg_list);
+			}
 			else
 				return (-1);
 		}
