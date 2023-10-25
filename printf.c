@@ -61,7 +61,7 @@ int _printf(const char *format, ...)
 			}
 			else if (*format == 'S')
 			{
-				len += printf_string(art_list);
+				len += printf_string(arg_list);
 			}
 			else
 				return (-1);

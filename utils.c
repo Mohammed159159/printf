@@ -144,14 +144,14 @@ int printf_string(va_list val)
 	if (s == NULL)
 	{
 		s = "(null)";
-		len = _strlen(s);
+		len = strlen(s);
 		for (i = 0; i < len; i++)
 			write(1, &s[i], 1);
 		return (len);
 	}
 	else
 	{
-		len = _strlen(s);
+		len = strlen(s);
 		for (i = 0; i < len; i++)
 			write(1, &s[i], 1);
 		return (len);
