@@ -1,13 +1,11 @@
 #include "main.h"
-
 /**
  * print_string - a function for printing a string
  * @args: args of printf
  * Return: length of string printed
  */
-int print_string(va_list args)
+int print_string(char *str)
 {
-	char *str = va_arg(args, char*);
 
 	int temp_len = 0;
 	char *null_string = "(null)";
@@ -31,10 +29,9 @@ int print_string(va_list args)
  * @args: args of printf
  * Return: 1 or 6 if char is null
  */
-int print_char(va_list args)
+int print_char(char c)
 {
-	char ch = va_arg(args, int);
-	write(1, &ch, 1);
+	write(1, &c, 1);
 	return (1);
 }
 
@@ -96,30 +93,39 @@ int print_bin(unsigned int n)
 	return (++len);
 }
 
-
 /**
- * rot13 - implement the rot13 algorithm on given string
- * @s: string to be manipulated
- * Return: no chars printed
+ * printf_rot13 - printf str to ROT13 place into buffer
+ * @args: type struct va_arg where is allocated printf arguments
+ * Return: counter
+ *
  */
-int rot13(char* s) 
+int printf_rot13(va_list args)
 {
-	char* p;
-	int i = 0;
+	int i, j, counter = 0;
+	int k = 0;
+	char *s = va_arg(args, char*);
+	char alpha[] = {"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"};
+	char beta[] = {"nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM"};
 
-	for (p = s; *p; p++) 
+	if (s == NULL)
+		s = "(null)";
+	for (i = 0; s[i]; i++)
 	{
-		if (*p >= 'a' && *p <= 'z')
+		k = 0;
+		for (j = 0; alpha[j] && !k; j++)
 		{
-			*p = (*p - 'a' + 13) % 26 + 'a';
-			i++;
-		} else if (*p >= 'A' && *p <= 'Z')
+			if (s[i] == alpha[j])
+			{
+				write(1, &beta[j], 1);
+				counter++;
+				k = 1;
+			}
+		}
+		if (!k)
 		{
-			*p = (*p - 'A' + 13) % 26 + 'A';
-			i++;
+			write(1, &s[i], 1);
+			counter++;
 		}
 	}
-
-	return (i);
+	return (counter);
 }
-

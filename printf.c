@@ -57,8 +57,7 @@ int _printf(const char *format, ...)
 			}
 			else if (*format == 'R')
 			{
-				str = va_arg(arg_list, char*)
-				len += rot13(str);
+				len += printf_rot13(arg_list);
 			}
 			else
 				return (-1);
@@ -67,4 +66,9 @@ int _printf(const char *format, ...)
 	}
 	va_end(arg_list);
 	return (len);
+}
+
+void main(void)
+{
+	_printf("%R", "Hello");
 }
